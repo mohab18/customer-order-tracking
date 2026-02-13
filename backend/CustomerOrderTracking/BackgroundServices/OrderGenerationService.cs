@@ -15,7 +15,7 @@ namespace CustomerOrderTracking.BackgroundServices
         private static readonly string[] _products =
         {
             "Laptop", "Mouse", "Keyboard", "Monitor", "Headphones",
-            "Webcam", "USB Cable", "Hard Drive", "RAM", "SSD"
+            "Webcam", "USB", "Watch", "Phone", "Handbag"
         };
 
         public OrderGenerationService(
@@ -52,7 +52,6 @@ namespace CustomerOrderTracking.BackgroundServices
             var customers = await customerService.GetAllCustomers();
             var activeCustomerIds = customers.Where(c => c.IsActive).Select(c => c.Id).ToList();
 
-            // Start timers for new customers
             foreach (var customerId in activeCustomerIds)
             {
                 if (!_customerTimers.ContainsKey(customerId))
@@ -61,7 +60,7 @@ namespace CustomerOrderTracking.BackgroundServices
                 }
             }
 
-            // Stop timers for inactive customers
+      
             var inactiveCustomers = _customerTimers.Keys.Except(activeCustomerIds).ToList();
             foreach (var customerId in inactiveCustomers)
             {
@@ -121,7 +120,7 @@ namespace CustomerOrderTracking.BackgroundServices
 
                 _logger.LogInformation($"Generated order {orderDto.Id} for customer {customerId}");
 
-                // Send SignalR notification
+                
                 await _hubContext.Clients.Group($"customer_{customerId}")
                     .SendAsync("ReceiveOrder", orderDto);
 

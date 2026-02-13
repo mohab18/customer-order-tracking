@@ -10,7 +10,7 @@ namespace CustomerOrderTracking.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerService _customerService;
-        //private readonly OrderGenerationService _orderGenerationService;
+       
 
         public CustomersController(ICustomerService customerService)
         {
@@ -42,8 +42,7 @@ namespace CustomerOrderTracking.Controllers
             {
                 var customer = await _customerService.CreateCustomer(dto);
 
-              
-                //_orderGenerationService.StartOrderGeneration(customer.Id);
+            
                 
 
                 return CreatedAtAction(nameof(GetById), new { id = customer.Id }, customer);
@@ -67,15 +66,6 @@ namespace CustomerOrderTracking.Controllers
 
                 await _customerService.UpdateCustomer(id, dto);
 
-                // Manage background job
-                //if (dto.IsActive && !wasActive)
-                //{
-                //    _orderGenerationService.StartOrderGeneration(id);
-                //}
-                //else if (!dto.IsActive && wasActive)
-                //{
-                //    _orderGenerationService.StopOrderGeneration(id);
-                //}
 
                 return NoContent();
             }
@@ -88,7 +78,7 @@ namespace CustomerOrderTracking.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            //_orderGenerationService.StopOrderGeneration(id);
+            
             await _customerService.DeleteCustomer(id);
             return NoContent();
         }

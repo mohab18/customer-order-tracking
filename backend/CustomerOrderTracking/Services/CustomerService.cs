@@ -91,7 +91,7 @@ namespace CustomerOrderTracking.Services
                 throw new InvalidOperationException("Customer not found");
             }
 
-            // Check email if changed
+       
             if (customer.Email != dto.Email && await _customerRepository.EmailExists(dto.Email, id))
             {
                 throw new InvalidOperationException("Email already exists");

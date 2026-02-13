@@ -25,14 +25,14 @@ namespace CustomerOrderTracking.Data
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(200);
                 entity.HasIndex(e => e.Email).IsUnique();
 
-                // Cascade delete
+                // Cascade delete orders with customer
                 entity.HasMany(e => e.Orders)
                     .WithOne(e => e.Customer)
                     .HasForeignKey(e => e.CustomerId)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // Order configuration
+        
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.HasKey(e => e.Id);
