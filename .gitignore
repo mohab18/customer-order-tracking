@@ -1,0 +1,43 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+Thumbs.db
+*.dll
+*.pdb
+*.exe
+[Dd]ebug/
+[Rr]elease/
+*.log
+appsettings.Development.json
+Migrations/
+
+# Angular
+node_modules/
+dist/
+.angular/
+*.js.map
+*.d.ts.map
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vs/
+
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+
+# Environment
+.env
+.env.local
