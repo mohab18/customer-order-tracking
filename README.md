@@ -46,8 +46,9 @@ Also you can check swagger to test backend endpoints : http://localhost:7086/swa
 
 
 Step 3: Run Frontend
+In a new Terminal
 ```
-cd ../../frontend
+cd frontend
 cd customer-order-ui
 npm install
 ng serve 
