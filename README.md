@@ -25,7 +25,7 @@ Make sure the following are installed on your machine:
 
 Step 1: Clone the Repository
 ```
-git clone <https://github.com/mohab18/customer-order-tracking.git>
+git clone https://github.com/mohab18/customer-order-tracking.git
 cd customer-order-tracking
 
 ```
