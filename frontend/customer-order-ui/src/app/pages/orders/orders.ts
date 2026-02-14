@@ -67,7 +67,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ) { }
 
   async ngOnInit() {
-    // Get customer ID from route
+    
     this.customerId = this.route.snapshot.paramMap.get('id') || '';
 
     if (!this.customerId) {
@@ -75,7 +75,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Initialize filters form with controls enabled consistently
     this.filtersForm = this.fb.group({
       fromDate: [null],
       toDate: [null],
@@ -83,21 +82,21 @@ export class OrdersComponent implements OnInit, OnDestroy {
       maxAmount: [null],
     });
 
-    // ✅ start SignalR connection
+    
     try {
       await this.signalr.startConnection();
     } catch (err) {
       console.error('Failed to start SignalR connection:', err);
     }
 
-    // ✅ join customer group for real-time updates
+ 
     try {
       await this.signalr.joinCustomerGroup(this.customerId);
     } catch (err) {
       console.error('Failed to join customer group:', err);
     }
 
-    // ✅ listen for new orders and reload if auto-update is enabled
+    
     this.orderUpdateSub = this.signalr.newOrder$.subscribe((order) => {
       if (!this.autoUpdate) return;
       if (this.isLoading) return;
@@ -108,20 +107,17 @@ export class OrdersComponent implements OnInit, OnDestroy {
       this.load();
     });
 
-    // ✅ LOAD ORDERS IMMEDIATELY ON PAGE INIT
+    
     this.load();
   }
 
-  /**
-   * Convert Date to ISO string for API
-   */
+ 
+  
   private toIso(d: Date | null | undefined): string | undefined {
     return d ? d.toISOString() : undefined;
   }
 
-  /**
-   * Build filter object from form values
-   */
+ 
   private buildFilter(): OrderFilter {
     const v = this.filtersForm.getRawValue();
 
@@ -135,16 +131,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     };
   }
 
-  /**
-   * LOAD ORDERS
-   * Fetches orders from the API with current filters and pagination
-   * This method is called on:
-   * - Page initialization
-   * - Filter changes
-   * - Pagination changes
-   * - Manual refresh
-   * - New orders received (if auto-update is enabled)
-   */
+ 
   load() {
     this.isLoading = true;
     this.cdr.markForCheck();
@@ -163,7 +150,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
           console.log('Orders loaded successfully:', res);
           this.data = res.items ?? [];
           this.total = res.totalCount ?? 0;
-          // Note: API might return current page, adjust if needed
+        
           if (res.pageNumber) {
             this.page = res.pageNumber;
           }
@@ -180,10 +167,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       });
   }
 
-  /**
-   * APPLY FILTERS
-   * Resets to page 1 and reloads orders with new filter values
-   */
+  
   applyFilters() {
     this.page = 1;
     if (this.paginator) {
@@ -192,10 +176,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.load();
   }
 
-  /**
-   * CLEAR ALL FILTERS
-   * Resets filter form and reloads all orders
-   */
+  
   clearFilters() {
     this.filtersForm.reset({
       fromDate: null,
@@ -207,30 +188,24 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
 
-  /**
-   * HANDLE PAGINATION
-   * Called when user changes page or page size
-   */
+  
   onPage(e: PageEvent) {
     this.page = e.pageIndex + 1;
     this.pageSize = e.pageSize;
     this.load();
   }
 
-  /**
-   * TOGGLE AUTO-UPDATE
-   * Enable/disable automatic reloading when new orders arrive via SignalR
-   */
+  
   toggleAutoUpdate(checked: boolean) {
     this.autoUpdate = checked;
     console.log('Auto-update toggled:', checked);
   }
 
   ngOnDestroy() {
-    // Unsubscribe from SignalR order updates
+   
     this.orderUpdateSub?.unsubscribe();
 
-    // Leave customer group
+   
     this.signalr.leaveCustomerGroup(this.customerId).catch((err) => {
       console.error('Failed to leave customer group:', err);
     });

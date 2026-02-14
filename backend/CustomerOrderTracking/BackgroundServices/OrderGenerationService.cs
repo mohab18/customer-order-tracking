@@ -15,7 +15,7 @@ namespace CustomerOrderTracking.BackgroundServices
         private static readonly string[] _products =
         {
             "Laptop", "Mouse", "Keyboard", "Monitor", "Headphones",
-            "Webcam", "USB", "Watch", "Phone", "Handbag"
+            "Camera", "USB", "Watch", "Phone", "Handbag"
         };
 
         public OrderGenerationService(
@@ -76,7 +76,7 @@ namespace CustomerOrderTracking.BackgroundServices
                 async _ => await GenerateOrderAsync(customerId),
                 null,
                 TimeSpan.FromSeconds(5),
-                TimeSpan.FromSeconds(5)
+                TimeSpan.FromMinutes(1)
             );
 
             _customerTimers.TryAdd(customerId, timer);

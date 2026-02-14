@@ -1,4 +1,4 @@
-/* customers.component.css — FULL FILE (COPY/PASTE AS-IS) */
+
 :host {
   --primary: #2563eb;
   --primary-dark: #1e40af;
@@ -27,7 +27,6 @@
   box-sizing: border-box;
 }
 
-/* Smooth dashboard page wrapper */
 .page-shell {
   background: radial-gradient(900px 420px at 10% 0%, rgba(37, 99, 235, 0.14), transparent 55%), radial-gradient(700px 360px at 95% 15%, rgba(59, 130, 246, 0.10), transparent 55%), linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
   min-height: 100vh;
@@ -39,7 +38,6 @@
   margin: 0 auto;
 }
 
-/* ====== Top header (Dashboard bar) ====== */
 .dashboard-header {
   display: flex;
   align-items: center;
@@ -85,7 +83,7 @@
   font-weight: 600;
 }
 
-/* ====== Section wrapper (smooth + divided) ====== */
+
 .section {
   background: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.86) 100%);
   border: var(--border);
@@ -113,14 +111,14 @@
   z-index: 1;
 }
 
-/* ====== Customers grid (vertical) ====== */
+
 .customers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 22px;
 }
 
-/* ====== Customer card ====== */
+
 .customer-card {
   background: #ffffff;
   border-radius: 16px;
@@ -173,7 +171,7 @@
   font-weight: 600;
 }
 
-/* stats box */
+
 .customer-stats {
   display: grid;
   gap: 14px;
@@ -207,7 +205,6 @@
   font-size: 15px;
 }
 
-/* badge */
 .stat-badge {
   display: inline-block;
   padding: 6px 12px;
@@ -231,7 +228,6 @@
     border-color: rgba(209, 213, 219, 0.95);
   }
 
-/* CTA button */
 .view-orders-button {
   padding: 13px 18px;
   border: none;
@@ -259,7 +255,7 @@
     transform: scale(0.99);
   }
 
-/* Empty state inside grid section */
+
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;
@@ -279,7 +275,7 @@
   margin: 0;
 }
 
-/* ====== Forms ====== */
+
 .form-section {
   background: transparent;
   border: none;
@@ -358,7 +354,7 @@
   flex-wrap: wrap;
 }
 
-/* Buttons */
+
 .btn {
   padding: 13px 20px;
   border: none;
@@ -405,7 +401,7 @@
   transform: scale(0.99);
 }
 
-/* ====== Manage section ====== */
+
 .manage-section {
   background: transparent;
   border: none;
@@ -497,7 +493,7 @@
     cursor: not-allowed;
   }
 
-/* ====== Modal ====== */
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -613,7 +609,7 @@
     transform: none;
   }
 
-/* Alerts */
+
 .alert {
   padding: 14px 16px;
   border-radius: 14px;

@@ -1,5 +1,3 @@
-/* ✅ FINAL orders.component.scss (FULL FILE COPY) */
-/* Keeps Angular Material, fixes the “separate lines” outline, keeps everything consistent */
 
 :host {
   --primary: #2563eb;
@@ -31,7 +29,7 @@
   margin: 0 auto;
 }
 
-/* Header card */
+/* header_card */
 .page-header {
   display: flex;
   align-items: center;
@@ -73,7 +71,7 @@
   flex-wrap: wrap;
 }
 
-/* Toggle pill */
+/* Toggle button */
 .auto-update-toggle {
   display: flex;
   align-items: center;
@@ -92,7 +90,7 @@
   white-space: nowrap;
 }
 
-/* Filters card */
+
 .filters-section {
   background: white;
   border-radius: 16px;
@@ -282,18 +280,15 @@ tbody tr {
   border-top: 1px solid var(--gray-200);
 }
 
-/* =========================================================
-   ✅ MATERIAL INPUTS: FULL CONNECTED BOX (NO “SEPARATE LINES”)
-   ========================================================= */
 
-/* Ensure grid items don’t overflow */
+
+
 ::ng-deep .orders-filters mat-form-field,
 ::ng-deep .orders-filters .mat-mdc-form-field {
   width: 100%;
   min-width: 0 !important;
 }
 
-/* Wrapper = solid white box */
 ::ng-deep .orders-filters .mat-mdc-text-field-wrapper {
   width: 100%;
   background: #fff !important;
@@ -301,38 +296,38 @@ tbody tr {
   overflow: hidden !important;
 }
 
-/* Standard padding like your custom inputs */
+
 ::ng-deep .orders-filters .mat-mdc-form-field-flex {
   padding: 0 14px !important;
 }
 
-/* Input height */
+
 ::ng-deep .orders-filters input.mat-mdc-input-element {
   width: 100% !important;
-  padding: 11px 0 !important; /* ✅ smaller height */
-  font-size: 14px !important; /* ✅ smaller text */
+  padding: 11px 0 !important; 
+  font-size: 14px !important;
   box-sizing: border-box !important;
 }
-/* ✅ Lower the floating label when there is a value */
+
 ::ng-deep .orders-filters .mdc-floating-label--float-above {
   transform: translateY(-1.5em) scale(0.75) !important;
 }
 
 
 
-/* Remove the subscript area so no jumping/extra space */
+
 ::ng-deep .orders-filters .mat-mdc-form-field-subscript-wrapper {
   display: none !important;
 }
 
-/* Make the outline look like ONE connected rectangle */
+
 ::ng-deep .orders-filters .mdc-notched-outline__leading,
 ::ng-deep .orders-filters .mdc-notched-outline__notch,
 ::ng-deep .orders-filters .mdc-notched-outline__trailing {
   border-radius: 12px !important;
 }
 
-/* Remove the inner seams between the 3 outline segments */
+
 ::ng-deep .orders-filters .mdc-notched-outline__leading {
   border-right: none !important;
 }
@@ -341,28 +336,25 @@ tbody tr {
   border-left: none !important;
 }
 
-/* Default border color */
+
 ::ng-deep .orders-filters .mdc-notched-outline__leading,
 ::ng-deep .orders-filters .mdc-notched-outline__notch,
 ::ng-deep .orders-filters .mdc-notched-outline__trailing {
   border-color: var(--gray-200) !important;
 }
 
-/* Focus border */
+
 ::ng-deep .orders-filters .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
 ::ng-deep .orders-filters .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
 ::ng-deep .orders-filters .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
   border-color: var(--primary) !important;
 }
 
-/* Date icon color */
 ::ng-deep .orders-filters .mat-datepicker-toggle {
   color: var(--primary) !important;
 }
 
-/* =========================================================
-   ✅ Nicer Slide Toggle inside pill
-   ========================================================= */
+
 ::ng-deep .auto-update-toggle .mdc-switch {
   transform: scale(1.05);
 }
