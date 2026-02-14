@@ -83,8 +83,8 @@
             <div class="form-group">
               <label>Status</label>
               <select formControlName="isActive" class="form-input">
-                <option [value]="true">Active</option>
-                <option [value]="false">Inactive</option>
+                <option [ngValue]="true">Active</option>
+                <option [ngValue]="false">Inactive</option>
               </select>
             </div>
 
@@ -145,8 +145,8 @@
                 <div class="form-group">
                   <label class="form-label">Status</label>
                   <select class="form-select" formControlName="isActive">
-                    <option [value]="true">Active</option>
-                    <option [value]="false">Inactive</option>
+                    <option [ngValue]="true">Active</option>
+                    <option [ngValue]="false">Inactive</option>
                   </select>
                 </div>
               </div>
