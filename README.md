@@ -29,6 +29,7 @@ git clone https://github.com/mohab18/customer-order-tracking.git
 cd customer-order-tracking
 
 ```
+then open folder in any editor
 
 Step 2: Run Backend which also run Migration
 ```
@@ -46,16 +47,20 @@ Step 3: Run Frontend
 ```
 cd ../../frontend
 cd customer-order-ui
-run npm install
-run ng serve 
+npm install
+ng serve 
 ```
 Now frontend should be running on http://localhost:4200.
 
 
 At first no Customers are added you can add one from UI or Swagger and check the 1 min order generation feature.
 
-Pages 2
+Customer if active 1 min order generation feature is active if not no orders generated
+
+Number of Pages 2:
+
 Page 1 : Customer Dashboard : Customer Cards with their info and orders count and order status, Create Customer Form , Update Customer Form and Delete Customer Button.
+
 Page 2 : Orders Page : Orders Table with pagination and sorting, Filterng by Date or PriceAmount , and AutoUpdate Toggle Button to enable or disable real time updates.
 
 
