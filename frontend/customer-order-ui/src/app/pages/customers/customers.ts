@@ -26,6 +26,7 @@ import { SignalrService } from '../../services/signalr.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatButtonModule, MatIconModule],
   templateUrl: './customers.html',
+  styleUrls: ['./customers.css'],
 })
 export class CustomersComponent implements OnInit, OnDestroy {
   customers: Customer[] = [];

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +36,8 @@ import { finalize } from 'rxjs/operators';
     MatIconModule,
   ],
   templateUrl: './orders.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./orders.css'],
 })
 export class OrdersComponent implements OnInit, OnDestroy {
   customerId!: string;
@@ -60,7 +62,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private ordersApi: OrderService,
-    private signalr: SignalrService
+    private signalr: SignalrService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   async ngOnInit() {
@@ -72,7 +75,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Initialize filters form
+    // Initialize filters form with controls enabled consistently
     this.filtersForm = this.fb.group({
       fromDate: [null],
       toDate: [null],
@@ -144,6 +147,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
    */
   load() {
     this.isLoading = true;
+    this.cdr.markForCheck();
     const filter = this.buildFilter();
 
     console.log('Loading orders for customer:', this.customerId, 'Filter:', filter);
@@ -152,6 +156,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       .getCustomerOrders(this.customerId, filter)
       .pipe(finalize(() => {
         this.isLoading = false;
+        this.cdr.markForCheck();
       }))
       .subscribe({
         next: (res: PagedResult<Order>) => {
@@ -165,10 +170,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
           if (res.pageSize) {
             this.pageSize = res.pageSize;
           }
+          this.cdr.markForCheck();
         },
         error: (err) => {
           console.error('Failed to load orders:', err);
           this.data = [];
+          this.cdr.markForCheck();
         },
       });
   }
@@ -198,6 +205,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     });
     this.applyFilters();
   }
+
 
   /**
    * HANDLE PAGINATION

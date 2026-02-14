@@ -76,7 +76,7 @@ namespace CustomerOrderTracking.BackgroundServices
                 async _ => await GenerateOrderAsync(customerId),
                 null,
                 TimeSpan.FromSeconds(5),
-                TimeSpan.FromMinutes(1)
+                TimeSpan.FromSeconds(5)
             );
 
             _customerTimers.TryAdd(customerId, timer);

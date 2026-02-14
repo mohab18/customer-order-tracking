@@ -1,0 +1,50 @@
+/* ✅ GLOBAL OVERLAY FIX (PUT IN src/styles.scss ONLY) */
+/* This is required to stop the datepicker from being see-through. */
+
+.cdk-overlay-container,
+.cdk-overlay-pane {
+  z-index: 5000 !important;
+}
+
+.cdk-overlay-backdrop {
+  background: rgba(17, 24, 39, 0.06) !important;
+}
+
+.cdk-overlay-pane .mat-datepicker-content,
+.cdk-overlay-pane .mat-mdc-datepicker-content {
+  transform: translateY(-10px) !important;
+}
+
+.mat-datepicker-content,
+.mat-mdc-datepicker-content {
+  background: #ffffff !important;
+  opacity: 1 !important;
+  border-radius: 14px !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18) !important;
+  overflow: hidden !important;
+}
+
+.mat-calendar {
+  background: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.mat-calendar-header {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+  color: #fff !important;
+}
+
+.mat-calendar-controls,
+.mat-calendar-controls button {
+  color: #fff !important;
+}
+
+.mat-calendar-body-selected {
+  background: #2563eb !important;
+  color: #fff !important;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: #2563eb !important;
+}

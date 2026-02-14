@@ -1,317 +1,28 @@
-<div style="min-height: 100vh; background: linear-gradient(135deg, #f8fafc 0%, #f0f4f8 100%); padding: 32px 24px;">
-  <style>
-    :host {
-      --primary: #2563eb;
-      --primary-dark: #1e40af;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-300: #d1d5db;
-      --gray-600: #4b5563;
-      --gray-900: #111827;
-    }
-
-    .orders-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .page-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      padding: 0 8px;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .header-left {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .page-title {
-      margin: 0;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--gray-900);
-      letter-spacing: -0.5px;
-    }
-
-    .page-subtitle {
-      font-size: 14px;
-      color: var(--gray-600);
-      margin-top: 6px;
-      font-weight: 500;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .auto-update-toggle {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 16px;
-      background: white;
-      border-radius: 8px;
-      border: 1px solid var(--gray-200);
-    }
-
-    .toggle-label {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gray-900);
-      white-space: nowrap;
-    }
-
-    .filters-section {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid var(--gray-200);
-      margin-bottom: 24px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
-    .filters-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--gray-900);
-      margin: 0 0 18px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .filters-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .filters-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .btn {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-      .btn-primary:hover {
-        background: var(--primary-dark);
-        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
-      }
-
-    .btn-secondary {
-      background: white;
-      color: var(--gray-900);
-      border: 1px solid var(--gray-300);
-      font-weight: 500;
-    }
-
-      .btn-secondary:hover {
-        background: var(--gray-50);
-        border-color: var(--gray-600);
-      }
-
-    .btn:active {
-      transform: scale(0.98);
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .spacer {
-      flex: 1;
-    }
-
-    .table-section {
-      background: white;
-      border-radius: 12px;
-      border: 1px solid var(--gray-200);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-    }
-
-    .table-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--gray-200);
-      background: var(--gray-50);
-    }
-
-    .table-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--gray-900);
-      margin: 0;
-    }
-
-    .table-stats {
-      font-size: 13px;
-      color: var(--gray-600);
-      font-weight: 500;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th {
-      padding: 14px 18px;
-      text-align: left;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--gray-600);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      background: var(--gray-50);
-      border-bottom: 2px solid var(--gray-200);
-    }
-
-    td {
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--gray-200);
-      color: var(--gray-900);
-      font-size: 14px;
-    }
-
-    tbody tr {
-      transition: background-color 0.2s ease;
-    }
-
-      tbody tr:hover {
-        background-color: #f9fafb;
-      }
-
-      tbody tr:last-child td {
-        border-bottom: none;
-      }
-
-    .amount-cell {
-      font-weight: 600;
-      color: var(--success);
-    }
-
-    .empty-state {
-      padding: 60px 24px;
-      text-align: center;
-      color: var(--gray-600);
-    }
-
-    .empty-state-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-      opacity: 0.5;
-    }
-
-    .empty-state-text {
-      font-size: 16px;
-      font-weight: 500;
-      margin: 0;
-    }
-
-    .loading-state {
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--gray-600);
-    }
-
-    .spinner {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      border: 3px solid var(--gray-200);
-      border-top: 3px solid var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 12px;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .mat-mdc-paginator {
-      background: var(--gray-50);
-      border-top: 1px solid var(--gray-200);
-    }
-
-    /* Material form field customization */
-    ::ng-deep {
-      .orders-filters mat-form-field {
-        width: 100%;
-      }
-
-      .orders-filters .mat-mdc-form-field-focus-overlay {
-        background-color: rgba(37, 99, 235, 0.04);
-      }
-    }
-  </style>
-
+<!-- ✅ FINAL HTML (orders.html) - only tiny class wrapper added for layout -->
+<div class="page-shell">
   <div class="orders-container">
+
     <!-- Header -->
     <div class="page-header">
       <div class="header-left">
         <h1 class="page-title">Orders</h1>
         <p class="page-subtitle">View and filter customer orders</p>
       </div>
+
       <div class="header-actions">
         <div class="auto-update-toggle">
           <mat-slide-toggle [checked]="autoUpdate"
                             (change)="toggleAutoUpdate($event.checked)"
-                            color="primary"></mat-slide-toggle>
+                            color="primary">
+          </mat-slide-toggle>
           <span class="toggle-label">Auto-update</span>
         </div>
       </div>
     </div>
 
-    <!-- Filters Section -->
+    <!-- Filters -->
     <div class="filters-section orders-filters">
-      <h3 class="filters-title">
-        <span style="font-size: 18px;">⚙️</span>
-        Filter Orders
-      </h3>
+      <h3 class="filters-title">Filter Orders</h3>
 
       <form [formGroup]="filtersForm" class="filters-grid">
         <mat-form-field appearance="outline">
@@ -347,53 +58,42 @@
         <button class="btn btn-secondary" (click)="clearFilters()">
           Clear All
         </button>
-        <span class="spacer"></span>
-        <button class="btn btn-secondary" (click)="load()" [disabled]="isLoading">
-          <span style="font-size: 16px;">↻</span>
-          Refresh
-        </button>
       </div>
     </div>
 
-    <!-- Orders Table -->
+    <!-- Table -->
     <div class="table-section">
       <div class="table-header">
         <h3 class="table-title">Orders (Latest First)</h3>
         <div class="table-stats" *ngIf="data.length > 0">
-          Showing {{ (page - 1) * pageSize + 1 }} to {{ page * pageSize > total ? total : page * pageSize }} of {{ total }} orders
+          Showing {{ (page - 1) * pageSize + 1 }}
+          to {{ page * pageSize > total ? total : page * pageSize }}
+          of {{ total }} orders
         </div>
       </div>
 
-      <!-- Loading State -->
       <div *ngIf="isLoading && data.length === 0" class="loading-state">
         <div class="spinner"></div>
         <p>Loading orders...</p>
       </div>
 
-      <!-- Empty State -->
       <div *ngIf="!isLoading && data.length === 0" class="empty-state">
         <div class="empty-state-icon">📋</div>
         <p class="empty-state-text">No orders found. Try adjusting your filters.</p>
       </div>
 
-      <!-- Orders Table -->
       <div *ngIf="data.length > 0">
         <table mat-table [dataSource]="data">
-          <!-- Created Column -->
           <ng-container matColumnDef="createdAt">
             <th mat-header-cell *matHeaderCellDef>Created</th>
-            <td mat-cell *matCellDef="let o">
-              {{ o.createdAt | date:'short' }}
-            </td>
+            <td mat-cell *matCellDef="let o">{{ o.createdAt | date:'short' }}</td>
           </ng-container>
 
-          <!-- Description Column -->
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef>Description</th>
             <td mat-cell *matCellDef="let o">{{ o.description }}</td>
           </ng-container>
 
-          <!-- Amount Column -->
           <ng-container matColumnDef="amount">
             <th mat-header-cell *matHeaderCellDef>Amount</th>
             <td mat-cell *matCellDef="let o" class="amount-cell">
@@ -405,7 +105,6 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <!-- Paginator -->
         <mat-paginator *ngIf="data.length > 0"
                        [length]="total"
                        [pageIndex]="page - 1"
@@ -416,5 +115,6 @@
         </mat-paginator>
       </div>
     </div>
+
   </div>
 </div>
