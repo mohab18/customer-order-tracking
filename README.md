@@ -25,7 +25,7 @@ Make sure the following are installed on your machine:
 
 Step 1: Clone the Repository
 ```
-git clone <https://github.com/mohab18/customer-order-tracking.git>
+git clone https://github.com/mohab18/customer-order-tracking.git
 cd customer-order-tracking
 
 ```
@@ -35,7 +35,7 @@ Step 2: Run Backend which also run Migration
 cd backend
 cd CustomerOrderTracking
 ```
-first run this command with you own postgres password to connect : `$env:ConnectionStrings__DefaultConnection="Host=localhost;Database=customer_order_tracking;Username=postgres;Password=YOUR_PASSWORD"`
+first run this command with your own postgres password to connect : `$env:ConnectionStrings__DefaultConnection="Host=localhost;Database=customer_order_tracking;Username=postgres;Password=YOUR_PASSWORD"`
 then run this command : `dotnet run`
 
 Now you should see the backend running on http://localhost:7086 and the database should be created and the migration should be applied.
