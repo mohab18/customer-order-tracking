@@ -41,3 +41,6 @@ Thumbs.db
 # Environment
 .env
 .env.local
+# Allow EF Core migrations for backend
+!backend/CustomerOrderTracking/Migrations/
+!backend/CustomerOrderTracking/Migrations/**
