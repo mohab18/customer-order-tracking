@@ -39,6 +39,8 @@ cd CustomerOrderTracking
 first run this command with your own postgres password to connect : `$env:ConnectionStrings__DefaultConnection="Host=localhost;Database=customer_order_tracking;Username=postgres;Password=YOUR_PASSWORD"`
 then run this command : `dotnet run`
 
+NOTE : Each time you run backend you have to run the command that inputs ur password and after it directly dotnet run.
+
 Now you should see the backend running on http://localhost:7086 and the database should be created and the migration should be applied.
 Also you can check swagger to test backend endpoints : http://localhost:7086/swagger
 
